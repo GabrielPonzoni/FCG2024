@@ -41,10 +41,9 @@ shaders, VBOs e VAO apresentados até então. Não precisa entregar nada neste e
 
 > Exercicio 5.a:
 > 
-> ![image](Screenshot_1.jpg)
+> ![Screenshot_1](https://github.com/user-attachments/assets/a915c998-219d-4ce5-b479-c9bd073b29d8)
 > 
-> ```![image](imagem1.jpg)```
-> 
+
 
 
 ## Comentários gerais

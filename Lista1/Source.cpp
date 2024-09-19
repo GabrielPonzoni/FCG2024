@@ -68,7 +68,7 @@ int main()
 //#endif
 
 	// Criação da janela GLFW
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Exercicio 5.c! -- Gabriel Ponzoni", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Exercicio 5.d! -- Gabriel Ponzoni", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
 	// Fazendo o registro da função de callback para a janela GLFW
@@ -120,13 +120,18 @@ int main()
 
 		glBindVertexArray(VAO); //Conectando ao buffer de geometria
 
-		glUniform4f(colorLoc, 1.0f, 0.6f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
-		// glUniform4f(colorLoc, 0.6f, 0.3f, 1.0f, 1.0f);
-		// glDrawArrays(GL_TRIANGLES, 0, 6);
-		// glUniform4f(colorLoc, 0.9f, 0.3f, 1.0f, 1.0f);
-		// glDrawArrays(GL_LINE_LOOP, 0, 6);
+		//Desenho trinagulo 
+		glUniform4f(colorLoc, 0.6f, 0.3f, 1.0f, 1.0f);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		
+		//Desenho linhas em loop
+		glUniform4f(colorLoc, 0.9f, 0.3f, 1.0f, 1.0f);
+		glDrawArrays(GL_LINE_LOOP, 0, 6);
+
+		//Desenho ponto do triangulo
+		glUniform4f(colorLoc, 1.0f, 0.6f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
 		glDrawArrays(GL_POINTS, 0, 6);
 
 		glBindVertexArray(0); //Desconectando o buffer de geometria

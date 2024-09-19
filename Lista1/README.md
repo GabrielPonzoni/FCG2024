@@ -60,8 +60,8 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Tarefa 2
 - [x] Tarefa 3
 - [x] Tarefa 4
-- [ ] Tarefa 5.i
-- [ ] Tarefa 5.ii
+- [x] Tarefa 5.i
+- [x] Tarefa 5.ii
 - [ ] Tarefa 5.iii
 - [ ] Tarefa 5.iv
 - [ ] Tarefa 5.v

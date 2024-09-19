@@ -68,7 +68,7 @@ int main()
 //#endif
 
 	// Criação da janela GLFW
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Exercicio 5.a! -- Gabriel Ponzoni", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Exercicio 5.b! -- Gabriel Ponzoni", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
 	// Fazendo o registro da função de callback para a janela GLFW
@@ -115,16 +115,17 @@ int main()
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f); //cor de fundo
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glLineWidth(10);
+		glLineWidth(5);
 		glPointSize(20);
 
 		glBindVertexArray(VAO); //Conectando ao buffer de geometria
 
-		glUniform4f(colorLoc, 0.6f, 0.3f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
+		glUniform4f(colorLoc, 0.9f, 0.3f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
 
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		// glDrawArrays(GL_TRIANGLES, 0, 6);
+		glDrawArrays(GL_LINE_LOOP, 0, 6);
 
 		glBindVertexArray(0); //Desconectando o buffer de geometria
 
@@ -211,9 +212,9 @@ int setupGeometry()
 	GLfloat vertices[] = {
 		//x   y     z
 		//T0
-		-0.50, 0.75, 0.0, //v0
-		-0.75, 0.5, 0.0, //v1
- 		-0.25, 0.5, 0.0, //v2
+		-0.25, 0.5, 0.0, //v0
+		-0.50, 0.75, 0.0, //v1
+		-0.75, 0.5, 0.0, //v2
 		//T1
 		-0.25, 0.5, 0.0, //v0
 		0.25, 0.50, 0.0, //v1

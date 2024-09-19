@@ -54,6 +54,11 @@ shaders, VBOs e VAO apresentados até então. Não precisa entregar nada neste e
 > ![Screenshot_3](https://github.com/user-attachments/assets/1ea245c4-4ac5-470a-af1f-246f7c9af504)
 >
 
+> Exercicio 5.d:
+> 
+> ![Screenshot_4](https://github.com/user-attachments/assets/e56d8c08-6c49-476e-8372-c18f3f29f69e)
+>
+
 ## Comentários gerais
 
 > Nesta seção você descreve alguma especificidade da tarefa, por exemplo:

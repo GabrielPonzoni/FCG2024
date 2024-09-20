@@ -10,6 +10,9 @@
 #include <iostream>
 #include <string>
 #include <assert.h>
+// Vector
+#include <vector>
+#include <cmath>
 
 using namespace std;
 
@@ -19,6 +22,7 @@ using namespace std;
 // GLFW
 #include <GLFW/glfw3.h>
 
+const float Pi = 3.14159;
 
 // Protótipo da função de callback de teclado
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
@@ -26,6 +30,7 @@ void key_callback(GLFWwindow* window, int key, int scancode, int action, int mod
 // Protótipos das funções
 int setupShader();
 int setupGeometry();
+int createCircle(int nPoints, float radius = 0.5);
 
 // Dimensões da janela (pode ser alterado em tempo de execução)
 const GLuint WIDTH = 800, HEIGHT = 600;
@@ -68,7 +73,7 @@ int main()
 //#endif
 
 	// Criação da janela GLFW
-	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Exercicio 5.d! -- Gabriel Ponzoni", nullptr, nullptr);
+	GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Exercicio 6.d! -- Gabriel Ponzoni", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 
 	// Fazendo o registro da função de callback para a janela GLFW
@@ -97,7 +102,17 @@ int main()
 	GLuint shaderID = setupShader();
 
 	// Gerando um buffer simples, com a geometria de um triângulo
-	GLuint VAO = setupGeometry();
+	// GLuint VAO = setupGeometry();
+
+	// int nPoints = 20;// circulo
+	// int nPoints = 8; // octagono
+	// int nPoints = 5; // pentagono
+	// int nPoints = 3; // pizza
+	int nPoints = 30; // espiral
+	// Gerando um buffer com a geometria de um circulo
+	GLuint VAO = createCircle(nPoints);
+	
+	int nVertices = nPoints + 2;
 	
 	glUseProgram(shaderID);
 	// Enviando a cor desejada (vec4) para o fragment shader
@@ -123,16 +138,26 @@ int main()
 		// Chamada de desenho - drawcall
 		// Poligono Preenchido - GL_TRIANGLES
 		//Desenho trinagulo 
-		glUniform4f(colorLoc, 0.6f, 0.3f, 1.0f, 1.0f);
-		glDrawArrays(GL_TRIANGLES, 0, 6);
+		// glUniform4f(colorLoc, 0.6f, 0.3f, 1.0f, 1.0f);
+		// glDrawArrays(GL_TRIANGLES, 0, 6);
 		
-		//Desenho linhas em loop
-		glUniform4f(colorLoc, 0.9f, 0.3f, 1.0f, 1.0f);
-		glDrawArrays(GL_LINE_LOOP, 0, 6);
+		// //Desenho linhas em loop
+		// glUniform4f(colorLoc, 0.9f, 0.3f, 1.0f, 1.0f);
+		// glDrawArrays(GL_LINE_LOOP, 0, 6);
 
-		//Desenho ponto do triangulo
+		// //Desenho ponto do triangulo
+		// glUniform4f(colorLoc, 1.0f, 0.6f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
+		// glDrawArrays(GL_POINTS, 0, 6);
+
+		//Desenho do circulo
+		glUniform4f(colorLoc, 0.6f, 0.3f, 1.0f, 1.0f);
+		glDrawArrays(GL_TRIANGLE_FAN, 10, nVertices);
+
+		glUniform4f(colorLoc, 0.9f, 0.3f, 1.0f, 1.0f);
+		glDrawArrays(GL_LINE_LOOP, 1, nVertices-2);
+
 		glUniform4f(colorLoc, 1.0f, 0.6f, 1.0f, 1.0f); //enviando cor para variável uniform inputColor
-		glDrawArrays(GL_POINTS, 0, 6);
+		glDrawArrays(GL_POINTS, 0, nVertices);
 
 		glBindVertexArray(0); //Desconectando o buffer de geometria
 
@@ -219,13 +244,15 @@ int setupGeometry()
 	GLfloat vertices[] = {
 		//x   y     z
 		//T0
-		-0.25, 0.5, 0.0, //v0
-		-0.50, 0.75, 0.0, //v1
-		-0.75, 0.5, 0.0, //v2
-		//T1
-		-0.25, 0.5, 0.0, //v0
-		0.25, 0.50, 0.0, //v1
-		0.0, 0.75, 0.0 //v2
+		// -0.25, 0.5, 0.0, //v0
+		// -0.50, 0.75, 0.0, //v1
+		// -0.75, 0.5, 0.0, //v2
+		// //T1
+		// -0.25, 0.5, 0.0, //v0
+		// 0.25, 0.50, 0.0, //v1
+		// 0.0, 0.75, 0.0 //v2
+
+		//C0
 	};
 
 	GLuint VBO, VAO;
@@ -261,3 +288,62 @@ int setupGeometry()
 	return VAO;
 }
 
+int createCircle(int nPoints, float radius)
+{
+	vector <GLfloat> vertices;
+
+	float angle = 0.0;
+	float slice = 8 * Pi / (float)nPoints;
+
+	//Adicionar o ponto da origem (0.0,0.0,0.0)
+	vertices.push_back(0.0); //xc centro do circulo
+	vertices.push_back(0.0); //yc centro do circulo
+	vertices.push_back(0.0); //zc centro do circulo
+
+	for (int i = 0; i < nPoints; i++)
+	{
+		float x = radius * cos(angle);
+		float y = radius * sin(angle);
+		float z = 0.0;
+
+		vertices.push_back(x); // x
+		vertices.push_back(y); // y
+		vertices.push_back(z); // z
+
+		angle = angle + slice;
+		radius = radius + 0.01;
+	}
+
+	// Configura�ao dos Buffer VBO e VAO
+	GLuint VBO, VAO;
+	//Geração do identificador do VBO
+	glGenBuffers(1, &VBO);
+	//Faz a conexão (vincula) do buffer como um buffer de array
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
+	//Envia os dados do array de floats para o buffer da OpenGl
+	glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(GLfloat), vertices.data(), GL_STATIC_DRAW);
+
+	//Geração do identificador do VAO (Vertex Array Object)
+	glGenVertexArrays(1, &VAO);
+	// Vincula (bind) o VAO primeiro, e em seguida  conecta e seta o(s) buffer(s) de vértices
+	// e os ponteiros para os atributos 
+	glBindVertexArray(VAO);
+	//Para cada atributo do vertice, criamos um "AttribPointer" (ponteiro para o atributo), indicando: 
+	// Localização no shader * (a localização dos atributos devem ser correspondentes no layout especificado no vertex shader)
+	// Numero de valores que o atributo tem (por ex, 3 coordenadas xyz) 
+	// Tipo do dado
+	// Se está normalizado (entre zero e um)
+	// Tamanho em bytes 
+	// Deslocamento a partir do byte zero 
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
+	glEnableVertexAttribArray(0);
+
+	// Observe que isso é permitido, a chamada para glVertexAttribPointer registrou o VBO como o objeto de buffer de vértice 
+	// atualmente vinculado - para que depois possamos desvincular com segurança
+	glBindBuffer(GL_ARRAY_BUFFER, 0); 
+
+	// Desvincula o VAO (é uma boa prática desvincular qualquer buffer ou array para evitar bugs medonhos)
+	glBindVertexArray(0); 
+
+	return VAO;
+}

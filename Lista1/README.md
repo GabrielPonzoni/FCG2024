@@ -62,8 +62,34 @@ shaders, VBOs e VAO apresentados até então. Não precisa entregar nada neste e
 
 > Exercicio 6.a:
 > 
+> ![Screenshot_6](https://github.com/user-attachments/assets/73fec4ec-be7c-4cbe-8251-cfe2ae44533b)
+
+
+> Exercicio 6.a:
 > 
+> ![Screenshot_7](https://github.com/user-attachments/assets/2a62cfa8-f25b-4c09-8d92-05851b280932)
+
+
+
+> Exercicio 6.b:
 >
+> ![Screenshot_8](https://github.com/user-attachments/assets/4d3f0bb2-bab2-455e-9ce5-16e0376f6649)
+
+
+> Exercicio 6.c:
+>
+> ![Screenshot_5](https://github.com/user-attachments/assets/9acabf78-30ef-437a-8ad1-ef1197216c0f)
+
+
+> Exercicio 6.d:
+>
+> ![Screenshot_9](https://github.com/user-attachments/assets/04284a38-48db-40f4-a3b4-455c45e58241)
+
+
+> Exercicio 6.e:
+> 
+
+
 ## Comentários gerais
 
 > Nesta seção você descreve alguma especificidade da tarefa, por exemplo:
@@ -83,11 +109,12 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Tarefa 5.iii
 - [x] Tarefa 5.iv
 - [x] Tarefa 5.v
-- [ ] Tarefa 6.i
-- [ ] Tarefa 6.ii
-- [ ] Tarefa 6.iii
-- [ ] Tarefa 6.iv
-- [ ] Tarefa 6.v
+- [x] Tarefa 6.i
+- [x] Tarefa 6.ii
+- [x] Tarefa 6.iii
+- [x] Tarefa 6.iv
+- [x] Tarefa 6.v
+- [ ] Tarefa 6.vi
 
 
 ## Referências e/ou créditos

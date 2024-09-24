@@ -115,6 +115,9 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 - [x] Tarefa 6.iv
 - [x] Tarefa 6.v
 - [ ] Tarefa 6.vi
+- [x] Tarefa 7
+- [x] Tarefa 8
+- [ ] Tarefa 9
 
 
 ## Referências e/ou créditos
